@@ -1,0 +1,16 @@
+<!-- login.html -->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+</head>
+<body>
+<h2>Login</h2>
+<p th:if="${loginError}" th:text="${loginError}"></p>
+<form action="/login" method="post">
+    Username: <input type="text" name="username">
+    Password: <input type="password" name="password">
+    <input type="submit" value="Login">
+</form>
+</body>
+</html>
