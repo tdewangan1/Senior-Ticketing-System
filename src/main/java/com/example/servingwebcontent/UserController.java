@@ -1,22 +1,30 @@
 package com.example.servingwebcontent;
 
+import com.example.servingwebcontent.login.AuthUtils;
+import com.example.servingwebcontent.users.User;
+import com.google.cloud.firestore.Firestore;
+
 import jakarta.servlet.http.HttpSession;
 //import login.AuthUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-//import users.User;
+
+import java.util.concurrent.ExecutionException;
+
 
 @Controller
 public class UserController {
 
-//    private final Firestore db;
-//
-//    public UserController(Firestore db) {
-//        this.db = db;
-//    }
+    private final Firestore db;
+
+    @Autowired  // This annotation is optional if you have a single constructor
+    public UserController(Firestore db) {
+        this.db = db;
+    }
 
 //    @GetMapping("/")
 //    public String index() {
@@ -50,7 +58,7 @@ public class UserController {
             Model model) {
         // Here you can invoke your service method to register the new user
         try {
-//            User user = new User(username, password);
+            User user = new User(db, username, password);
             model.addAttribute("signupSuccess", "Registration successful. Please login.");
             return "login";
         } catch (Exception e) {
@@ -82,10 +90,10 @@ public class UserController {
             @RequestParam("username") String username,
             @RequestParam("password") String password,
             HttpSession session, // To manage the session after successful login
-            Model model) {
+            Model model) throws ExecutionException, InterruptedException {
         // Here you can invoke your service method to authenticate the user
-//        boolean isAuthenticated = userService.authenticateUser(username, password);
-        boolean isAuthenticated = false;
+        boolean isAuthenticated = AuthUtils.authenticate(db, username, password);
+//        boolean isAuthenticated = false;
         if (isAuthenticated) {
             // If authentication is successful, manage user session and proceed
             session.setAttribute("username", username); // Store username in the session
