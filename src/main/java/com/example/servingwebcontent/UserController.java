@@ -1,5 +1,6 @@
 package com.example.servingwebcontent;
 
+import com.example.servingwebcontent.database.DatabaseOperations;
 import com.example.servingwebcontent.login.AuthUtils;
 import com.example.servingwebcontent.users.User;
 import com.google.cloud.firestore.Firestore;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 
@@ -55,8 +57,24 @@ public class UserController {
     public String handleSignup(
             @RequestParam("username") String username,
             @RequestParam("password") String password,
-            Model model) {
+            @RequestParam("confirm_password") String confirmedPassword,
+            Model model) throws ExecutionException, InterruptedException {
         // Here you can invoke your service method to register the new user
+
+        if (!password.equals(confirmedPassword)){
+            model.addAttribute("signupError", "Please make sure your passwords match");
+            return "signup";
+        }
+
+        ArrayList<String> userDocIDs = (ArrayList<String>) DatabaseOperations.getDocumentNamesFromFirestore(db, "users");
+        for (String docID : userDocIDs){
+            User user = new User(db, DatabaseOperations.getDocumentDataFromFirestore(db, "users", docID));
+            if (user.getUsername().equals(username)) {
+                model.addAttribute("signupError", "This username already exists.");
+                return "signup";
+            }
+        }
+
         try {
             User user = new User(db, username, password);
             model.addAttribute("signupSuccess", "Registration successful. Please login.");
