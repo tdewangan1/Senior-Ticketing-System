@@ -42,6 +42,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String loginForm(Model model) {
+        System.out.println("LOGIN CLICKED 1");
         return "login"; // Render the login form
     }
 
@@ -109,6 +110,10 @@ public class UserController {
             @RequestParam("password") String password,
             HttpSession session, // To manage the session after successful login
             Model model) throws ExecutionException, InterruptedException {
+
+        System.out.println("LOGIN CLICKED 2");
+
+
         // Here you can invoke your service method to authenticate the user
         boolean isAuthenticated = AuthUtils.authenticate(db, username, password);
 //        boolean isAuthenticated = false;
