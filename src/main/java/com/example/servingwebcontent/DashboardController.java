@@ -50,12 +50,13 @@ public class DashboardController {
                             @RequestParam("description") String description,
                             @RequestParam("urgency") String urgency,
                             Model model) {
-        System.out.println("SUBMIT TICKET PRESSED 2");
+        System.out.println("Ticket submission received: " + residentName + ", " + roomNumber + ", " + description + ", " + urgency);
 
         Ticket ticket = new Ticket(db, residentName, roomNumber, description, urgency);
+        // Make sure you save the ticket to the database here
 
-        return "redirect:/dashboard";
-
+        return "redirect:/dashboard"; // Redirect back to the dashboard after ticket submission
     }
+
 }
 

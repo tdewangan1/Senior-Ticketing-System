@@ -312,7 +312,7 @@
     <div id="ticketModal" class="modal" style="display:none;">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <form id="ticketForm" action="/dashboard/add-ticket" method="post">
+            <form id="ticketForm" action="/user/dashboard/add-ticket" method="post">
                 <label for="roomNumber">Room Number:</label>
                 <input type="text" id="roomNumber" name="roomNumber" required>
 
@@ -406,10 +406,11 @@
         document.getElementById('ticketModal').style.display = 'none';
     });
 
-    //     document.getElementById('ticketForm').addEventListener('submit', function(event) {
-    //     event.preventDefault();
-    //     document.getElementById('ticketModal').style.display = 'none';
-    // });
+        document.getElementById('ticketForm').addEventListener('submit', function() {
+            document.getElementById('ticketModal').style.display = 'none'; // This will just close the modal after submission
+        });
+
+
 
 </script>
 
