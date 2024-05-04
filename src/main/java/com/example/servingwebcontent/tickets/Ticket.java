@@ -30,7 +30,19 @@ public class Ticket {
 
         int numZeros = 5 - String.valueOf(ticketCount).length();
         String docID = "ticket" + "0".repeat(numZeros) + ticketCount;
-        DatabaseOperations.writeDataToFirestore(db, "users", docID, ticketData);
+        DatabaseOperations.writeDataToFirestore(db, "tickets", docID, ticketData);
+    }
+
+    public Ticket(Firestore db, Map<String, Object> ticketMap) {
+        this.db=db;
+
+        // Assigning instance variables from the userMap, ensuring to cast the objects to their appropriate types.
+        this.residentName = (String) ticketMap.get("residentName");
+        this.roomNumber = (String) ticketMap.get("roomNumber");
+        this.urgency = (String) ticketMap.get("urgency");
+        this.description = (String) ticketMap.get("description");
+
+
     }
 
     public String getResidentName() {
