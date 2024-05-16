@@ -7,7 +7,7 @@ Run this program using this command below in the terminal with the active direct
 
 Go to localhost:8080 to access this application in your browser once it has been run.
 
-The dependency needed for this application is Gradl, a API used for connecting us to our firebase database. 
+The dependency needed for this application is Gradle, a API used for connecting us to our firebase database. 
 
 Download Gradle using the link below:
 
