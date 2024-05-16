@@ -4,23 +4,27 @@
 <head>
     <meta charset="utf-8">
     <title>Senior Ticketing System Login</title>
-<!--    <link rel="stylesheet" href="login.css">-->
+    <!-- Import Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <style>
+        /* Importing Google fonts for consistent typography */
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-        *{
+        /* Base reset and font definitions for entire page */
+        * {
             margin: 0;
             padding: 0;
             outline: none;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        body{
+        /* Full viewport height background with gradient */
+        body {
             height: 100vh;
             width: 100%;
             background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
         }
-        .show-btn{
+        /* Styling for modal display button */
+        .show-btn {
             background: #fff;
             padding: 10px 20px;
             font-size: 20px;
@@ -29,81 +33,97 @@
             cursor: pointer;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
         }
-        .show-btn, .container{
+        /* Absolute positioning for central display */
+        .show-btn, .container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
 
-        input[type="checkbox"]{
+        /* Hide checkbox used for toggling container display */
+        input[type="checkbox"] {
             display: none;
         }
-        .container{
-            /*display: none;*/
+        /* Main container for login form, initially hidden */
+        .container {
             background: #fff;
             width: 410px;
             padding: 30px;
             box-shadow: 0 0 8px rgba(0,0,0,0.1);
         }
-        #show:checked ~ .container{
+        /* Show container when checkbox is checked */
+        #show:checked ~ .container {
             display: block;
         }
-        .container .close-btn{
+        /* Close button for the form */
+        .container .close-btn {
             position: absolute;
             right: 20px;
             top: 15px;
             font-size: 18px;
             cursor: pointer;
         }
-        .container .close-btn:hover{
+        /* Hover effect for close button */
+        .container .close-btn:hover {
             color: #3498db;
         }
-        .container .text{
+        /* Header text style */
+        .container .text {
             font-size: 35px;
             font-weight: 600;
             text-align: center;
         }
-        .container form{
+        /* Negative margin-top for form to raise it slightly upwards */
+        .container form {
             margin-top: -20px;
         }
-        .container form .data{
+        /* Styling for individual data entry points */
+        .container form .data {
             height: 45px;
             width: 100%;
             margin: 40px 0;
         }
-        form .data label{
+        /* Label styling within form */
+        form .data label {
             font-size: 18px;
         }
-        form .data input{
+        /* Input field styling */
+        form .data input {
             height: 100%;
             width: 100%;
             padding-left: 10px;
             font-size: 17px;
             border: 1px solid silver;
         }
-        form .data input:focus{
+        /* Input focus effect */
+        form .data input:focus {
             border-color: #3498db;
             border-bottom-width: 2px;
         }
-        form .forgot-pass{
+        /* Styling for forgot password link */
+        form .forgot-pass {
             margin-top: -8px;
         }
-        form .forgot-pass a{
+        /* Link styling within form */
+        form .forgot-pass a {
             color: #3498db;
             text-decoration: none;
         }
-        form .forgot-pass a:hover{
+        /* Hover effect for links */
+        form .forgot-pass a:hover {
             text-decoration: underline;
         }
-        form .btn{
+        /* Button container with effects for hover */
+        form .btn {
             margin: 30px 0;
             height: 45px;
             width: 100%;
             position: relative;
             overflow: hidden;
         }
-        form .btn .inner{
+        /* Animated background for button */
+        form .btn .inner {
             height: 100%;
             width: 300%;
             position: absolute;
@@ -112,10 +132,12 @@
             background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
             transition: all 0.4s;
         }
-        form .btn:hover .inner{
+        /* Hover animation effect */
+        form .btn:hover .inner {
             left: 0;
         }
-        form .btn button{
+        /* Button styling */
+        form .btn button {
             height: 100%;
             width: 100%;
             background: none;
@@ -127,30 +149,35 @@
             letter-spacing: 1px;
             cursor: pointer;
         }
-        form .signup-link{
+        /* Sign-up link styling */
+        form .signup-link {
             text-align: center;
         }
-        form .signup-link a{
+        /* Link color and styling */
+        form .signup-link a {
             color: #3498db;
             text-decoration: none;
         }
-        form .signup-link a:hover{
+        /* Hover effect for sign-up link */
+        form .signup-link a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
 <div class="center">
+    <!-- Checkbox to toggle container visibility -->
     <input type="checkbox" id="show">
-<!--    <label for="show" class="show-btn">View Form</label>-->
+    <!-- Main login form container -->
     <div class="container">
-<!--        <label for="show" class="close-btn fas fa-times" title="close">3</label>-->
         <div class="text">
             Login Form
         </div>
+        <!-- Error and success messages dynamically displayed -->
         <p th:if="${loginError}" th:text="${loginError}" style="color: red; text-align: center; margin-top: 5px"></p>
         <p th:if="${signupSuccess}" th:text="${signupSuccess}" style="text-align: center; margin-top: 5px"></p>
 
+        <!-- Form for login credentials submission -->
         <form action="/login" method="post">
             <div class="data" style="margin-top: 40px">
                 <label>Username</label>
@@ -160,13 +187,16 @@
                 <label>Password</label>
                 <input type="password" name="password" required>
             </div>
+            <!-- Forgot password link -->
             <div class="forgot-pass">
                 <a href="#">Forgot Password?</a>
             </div>
+            <!-- Login button with animated background -->
             <div class="btn">
                 <div class="inner"></div>
                 <button type="submit">login</button>
             </div>
+            <!-- Signup redirection link -->
             <div class="signup-link">
                 Don't have an account? <a href="/signup">Signup now</a>
             </div>

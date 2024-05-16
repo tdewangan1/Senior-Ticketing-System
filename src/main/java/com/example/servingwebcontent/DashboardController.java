@@ -14,30 +14,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-@Controller // Marks this class as a Spring MVC controller.
-@RequestMapping("/user") // All request mappings in this controller will be prefixed with "/user".
+/**
+ * Controller for handling dashboard functionalities including viewing, adding, and deleting tickets.
+ * Maps all requests with a "/user" prefix.
+ */
+@Controller
+@RequestMapping("/user")
 public class DashboardController {
 
-    private final Firestore db; // Firestore database instance.
-    private final TicketService ticketService; // Ticket service instance.
+    private final Firestore db; // Database service for Firestore operations.
+    private final TicketService ticketService; // Service for managing ticket-related operations.
 
-    @Autowired  // This annotation injects the Firestore instance into this controller.
+
+    // Constructor to inject Firestore and TicketService dependencies.
+    @Autowired
     public DashboardController(Firestore db, TicketService ticketService) {
-        this.db = db; // Initializes the Firestore database instance.
+        this.db = db;
         this.ticketService = ticketService;
     }
 
+    /**
+     * Displays the dashboard page with tickets if the user is logged in.
+     * Redirects to the login page if the user is not logged in.
+     */
     @GetMapping("/dashboard")
     public String showDashboard(Model model, HttpSession session) {
-        // Retrieve the username from the session.
         String username = (String) session.getAttribute("username");
-        // Check if the user is logged in by checking if username exists in the session.
         if (username == null) {
-            // If not logged in, redirect to the login page.
             return "redirect:/login";
         }
 
-        // Add the username to the model to make it accessible in the view (template).
         model.addAttribute("username", username);
 
         try {
@@ -47,31 +53,36 @@ public class DashboardController {
             model.addAttribute("error", "Failed to load tickets.");
         }
 
-        // Return the name of the Thymeleaf template to render the dashboard.
         return "dashboard";
     }
 
-    @GetMapping("dashboard/add-ticket")
+
+    // Provides a form to submit a new ticket from the dashboard page.
+    @GetMapping("/dashboard/add-ticket")
     public String showAddTicketForm(Model model) {
-        // Log to the console whenever this method is accessed.
-        System.out.println("SUBMIT TICKET PRESSED 1");
-        // Return the dashboard view which includes the ticket submission form.
-        return "dashboard";
+        return "dashboard"; // Just returns the dashboard page where the form is included.
     }
 
-    @PostMapping("dashboard/add-ticket")
+
+    // Handles the submission of a new ticket form and redirects to the dashboard.
+    @PostMapping("/dashboard/add-ticket")
     public String addTicket(@RequestParam("residentName") String residentName,
                             @RequestParam("roomNumber") String roomNumber,
                             @RequestParam("description") String description,
                             @RequestParam("urgency") String urgency,
                             Model model) {
-        // Log to the console when a ticket is submitted.
-        System.out.println("SUBMIT TICKET PRESSED 2");
+        // Make sure the urgency is capitalized
+        String capitalizedUrgency = urgency.substring(0, 1).toUpperCase() + urgency.substring(1).toLowerCase();
+        Ticket ticket = new Ticket(db, residentName, roomNumber, description, capitalizedUrgency);
 
-        // Create a new Ticket object with the provided form data.
-        Ticket ticket = new Ticket(db, residentName, roomNumber, description, urgency);
+        return "redirect:/user/dashboard";
+    }
 
-        // Redirect to the dashboard page after the ticket is submitted.
+
+    // Deletes a ticket given its ID by calling the deleteTicket method and redirects to the dashboard.
+    @PostMapping("/dashboard/delete-ticket")
+    public String deleteTicket(@RequestParam("ticketId") String ticketId) {
+        ticketService.deleteTicket(ticketId);
         return "redirect:/user/dashboard";
     }
 }

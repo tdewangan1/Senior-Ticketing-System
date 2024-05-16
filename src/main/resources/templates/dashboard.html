@@ -4,868 +4,475 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
 
+    <style>
+        /* Global font import */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-        <style>
-          /*<span style="font-family: verdana, geneva, sans-serif;">!*  import google fonts *!*/
-          @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-          *{
-              margin: 0;
-              padding: 0;
-              outline: none;
-              border: none;
-              text-decoration: none;
-              list-style: none;
-              box-sizing: border-box;
-              font-family: "Poppins", sans-serif;
-          }
-          body{
-              background: rgb(233, 233, 233);
-          }
-          .container{
-              display: flex;
-              width: 1200px;
-              margin: auto;
-          }
-          nav{
-              position: sticky;
-              top: 0;
-              left: 0;
-              bottom: 0;
-              width: 280px;
-              height: 110vh;
-              background: #fff;
-          }
-          .navbar{
-              width: 80%;
-              margin: 0 auto;
-          }
+        /* Global reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
 
-          .logo{
-              margin: 2rem 0 1rem 0;
-              padding-bottom: 3rem;
-              display: flex;
-              align-items: center;
-          }
-          .logo img{
-              width: 50px;
-              height: 50px;
-              border-radius: 50%;
-          }
-          .logo h1{
-              margin-left: 1rem;
-              text-transform: uppercase;
-          }
+        /* Body background color */
+        body {
+            background-color: #e7f0fa;
+        }
 
-          ul{
-              margin: 0 auto;
-          }
-          li{
-              padding-bottom: 2rem;
-          }
-          li a{
-              font-size: 16px;
-              color: rgb(85, 83, 83);
-          }
-          .nav-item{
+        /* Container styling */
+        .container {
+            display: flex;
+            width: 1200px;
+            margin: auto;
+        }
 
-          }
-          nav i{
-              width: 50px;
-              font-size: 18px;
-              text-align: center;
-          }
+        /* Navbar styling */
+        .navbar {
+            background-color: #fff;
+            color: #333;
+            padding: 1rem 0;
+            width: 220px;
+            height: 110vh;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-          .logout{
-              position: absolute;
-              bottom: 20px;
-          }
+        /* Centering navbar header */
+        .navbar h1 {
+            text-align: center;
+            width: 100%;
+            margin-left: 0;
+        }
 
-          /* Main Section */
-          .main{
-              width: 100%;
-          }
-          .main-top{
-              width: 100%;
-              background: #fff;
-              padding: 10px;
-              text-align: center;
-              font-size: 18px;
-              letter-spacing: 2px;
-              text-transform: uppercase;
-              color: rgb(43, 43, 43);
-          }
-          .main-body{
-              padding: 10px 10px 10px 20px;
-          }
-          h1{
-              margin: 20px 10px;
-          }
-          .search_bar{
-              display: flex;
-              padding: 10px;
-              justify-content: space-between;
-          }
-          .search_bar input{
-              width: 50%;
-              padding: 10px;
-              border: 1px solid rgb(190, 190, 190);
-          }
-          .search_bar input:focus{
-              border: 1px solid blueviolet;
-          }
-          .search_bar select{
-              border: 1px solid rgb(190, 190, 190);
-              padding: 10px;
-              margin-left: 2rem;
-          }
-          .search_bar .filter{
-              width: 300px;
-          }
+        /* Styling for navbar list */
+        .navbar ul {
+            padding: 0.5rem 0;
+            list-style-type: none;
+        }
 
-          .tags_bar{
-              width: 55%;
-              display: flex;
-              padding: 10px;
-              justify-content: space-between;
-          }
-          .tag{
-              background: #fff;
-              padding: 10px 15px;
-              border-radius: 20px;
-              display: flex;
-              align-items: center;
-              font-size: 13px;
-              cursor: pointer;
-          }
-          .tag i{
-              margin-right: 0.7rem;
-          }
-          .row{
-              display: flex;
-              padding: 10px;
-              margin-top: 1.3rem;
-              justify-content: space-between;
-          }
-          .row p{
-              color: rgb(54, 54, 54);
-              font-size: 15px;
-          }
-          .row p span{
-              color: blueviolet;
-          }
-          .job_card{
-              width: 100%;
-              padding: 15px;
-              cursor: pointer;
-              display: flex;
-              border-radius: 10px;
-              background: #fff;
-              margin-bottom: 15px;
-              justify-content: space-between;
-              border: 2px solid rgb(190, 190, 190);
-              box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
-          }
-          .job_details{
-              display: flex;
-          }
-          .job_details .img{
-              display: flex;
-              justify-content: center;
-              align-items: center;
-          }
-          .job_details .img i{
-              width: 70px;
-              font-size: 3rem;
-              margin-left: 1rem;
-              padding: 10px;
-              color: rgb(82, 22, 138);
-              background: rgb(216, 205, 226);
-          }
-          .job_details .text{
-              margin-left: 2.3rem;
-          }
-          .job_details .text span{
-              color: rgb(116, 112, 112);
-          }
-          .job_salary{
-              text-align: right;
-              color: rgb(54, 54, 54);
-          }
-          .job_card:active{
-              border: 2px solid blueviolet;
-              transition: 0.4s;
-          }
-          /*</span>*/
+        /* Styling for navbar list items */
+        .navbar li {
+            padding: 0.5rem 0;
+            border-bottom: none;
+        }
 
-          .modal {
-              position: fixed;
-              z-index: 1;
-              left: 0;
-              top: 0;
-              width: 100%;
-              height: 100%;
-              overflow: auto;
-              background-color: rgb(0,0,0);
-              background-color: rgba(0,0,0,0.4);
-          }
+        /* Styling for navbar links */
+        .navbar a {
+            color: #333;
+            padding: 0.5rem 1rem;
+            display: block;
+        }
 
-          .modal-content {
-              background-color: #fefefe;
-              margin: 5% auto; /* Vertical centering */
-              padding: 20px;
-              border: 1px solid #888;
-              width: 90%; /* Responsive width */
-              max-width: 500px; /* Max width */
-              box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-              display: flex;
-              flex-direction: column;
-              align-items: center; /* Ensures everything is centered */
-          }
+        /* Main top area styling */
+        .main-top {
+            background-color: #fff;
+            color: #333;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #007bff;
+        }
 
-          .modal-content label, .modal-content textarea, .modal-content select, .modal-content input {
-              width: 100%; /* Ensures full width within the modal content */
-              margin-top: 10px; /* Adds spacing between form items */
-          }
+        /* Styling for main top paragraph */
+        .main-top p {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
 
-          textarea#description {
-              height: 100px; /* Fixed height */
-              resize: none; /* Disable resizing */
-          }
+        /* Styling for logout button at the bottom of navbar */
+        .logout {
+            position: absolute;
+            bottom: 20px;
+        }
 
-          .close {
-              color: #aaaaaa;
-              float: right;
-              font-size: 28px;
-              font-weight: bold;
-          }
+        /* Main section styling */
+        .main {
+            width: 100%;
+        }
 
-          .close:hover,
-          .close:focus {
-              color: #000;
-              text-decoration: none;
-              cursor: pointer;
-          }
+        /* Main body padding */
+        .main-body {
+            padding: 10px 10px 10px 20px;
+        }
 
-          /* Fixed height for the description textarea */
-          textarea#description {
-              height: 100px; /* Fixed height for the description field */
-              resize: none; /* Prevent resizing the textarea */
-          }
-        </style>
+        /* Styling for main section headers */
+        h1 {
+            margin: 20px 10px;
+        }
+
+        /* Search bar styling */
+        .search_bar {
+            display: flex;
+            padding: 10px;
+            justify-content: space-between;
+        }
+
+        /* Search input styling */
+        .search_bar input {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid rgb(190, 190, 190);
+        }
+
+        /* Search input focus styling */
+        .search_bar input:focus {
+            border: 1px solid blueviolet;
+        }
+
+        /* Search bar select element styling */
+        .search_bar select {
+            border: 1px solid rgb(190, 190, 190);
+            padding: 10px;
+            margin-left: 2rem;
+        }
+
+        /* Search filter styling */
+        .search_bar .filter {
+            width: 300px;
+        }
+
+        /* Styling for tag bars within the search area */
+        .tags_bar {
+            width: 55%;
+            display: flex;
+            padding: 10px;
+            justify-content: space-between;
+        }
+
+        /* Individual tag styling */
+        .tag {
+            background: #fff;
+            padding: 10px 15px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        /* Tag icon margin */
+        .tag i {
+            margin-right: 0.7rem;
+        }
+
+        /* Row styling for job cards */
+        .row {
+            display: flex;
+            padding: 10px;
+            margin-top: 1.3rem;
+            justify-content: space-between;
+        }
+
+        /* Row paragraph styling */
+        .row p {
+            color: rgb(54, 54, 54);
+            font-size: 15px;
+        }
+
+        /* Highlight color for span within rows */
+        .row p span {
+            color:
+
+                    blueviolet;
+        }
+
+        /* Ticket card styling */
+        .ticket_card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #007bff;
+        }
+
+        /* Details section within ticket cards */
+        .job_details {
+            flex-grow: 1;
+            margin-right: 20px;
+        }
+
+        /* Urgency indicator styling */
+        .job_urgency {
+            min-width: 100px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Delete form styling */
+        .delete_form {
+            min-width: 120px;
+        }
+
+        /* Urgency level specific background colors */
+        .urgency-Low {
+            background-color: #dff0d8;
+        }
+
+        .urgency-Medium {
+            background-color: #fcf8e3;
+        }
+
+        .urgency-High {
+            background-color: #f2dede;
+        }
+
+        /* Delete button styling */
+        .delete-button {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Hover state for delete button */
+        .delete-button:hover {
+            background-color: #c9302c;
+        }
+
+        /* Hover state for buttons */
+        .button:hover, button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Hover state for the add ticket button */
+        #addTicketButton:hover {
+            background-color: #0056b3;
+        }
+
+        /* Add ticket button styling */
+        #addTicketButton {
+            display: block;
+            margin: 50px auto 10px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Modal overlay styling */
+        .modal {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Modal content container styling */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #007bff;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Modal form elements styling */
+        .modal-content label, .modal-content textarea, .modal-content select, .modal-content input {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        /* Modal form fields border styling */
+        .modal-content input, .modal-content select, .modal-content textarea {
+            border: 2px solid #007bff;
+        }
+
+        /* Textarea within modal styling */
+        textarea#description {
+            height: 100px;
+            resize: none;
+        }
+
+        /* Close button styling */
+        .close {
+            color: #007bff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* Close button hover and focus state */
+        .close:hover,
+        .close:focus {
+            color: #0056b3;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Submit button within modal styling */
+        #ticket-submit {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Textarea fixed height styling */
+        textarea#description {
+            height: 100px;
+            resize: none;
+        }
+
+        /* Form elements border styling */
+        #ticketForm input,
+        #ticketForm textarea,
+        #ticketForm select {
+            border: 1px solid black;
+        }
+    </style>
 
 </head>
 <body>
-  <div class="container">
+<!-- Main container for layout and alignment -->
+<div class="container">
+    <!-- Navigation section -->
     <nav>
-      <div class="navbar">
-        <div class="logo">
-          <img src="/pic/logo.jpg" alt="">
-          <h1>jobs</h1>
+        <div class="navbar">
+            <h1>Welcome!</h1>
+            <ul>
+
+
+                <!--          <li><a href="#">-->
+                <!--            <i class="fas fa-user"></i>-->
+                <!--            <span class="nav-item">Dashboard</span>-->
+                <!--          </a>-->
+                <!--          </li>-->
+
+                <!--          <li><a href="#">-->
+                <!--            <i class="fas fa-chart-bar"></i>-->
+                <!--            <span class="nav-item">Analytics</span>-->
+                <!--          </a>-->
+                <!--          </li>-->
+                <!--          <li><a href="#">-->
+                <!--            <i class="fas fa-tasks"></i>-->
+                <!--            <span class="nav-item">Jobs Board</span>-->
+                <!--          </a>-->
+                <!--          </li>-->
+                <!--          <li><a href="#">-->
+                <!--            <i class="fab fa-dochub"></i>-->
+                <!--            <span class="nav-item">Documnents</span>-->
+                <!--          </a>-->
+                <!--          </li>-->
+                <!--          <li><a href="#">-->
+                <!--            <i class="fas fa-cog"></i>-->
+                <!--            <span class="nav-item">Setting</span>-->
+                <!--          </a>-->
+                <!--          </li>-->
+                <!--          <li><a href="#">-->
+                <!--            <i class="fas fa-question-circle"></i>-->
+                <!--            <span class="nav-item">Help</span>-->
+                <!--          </a>-->
+                <!--          </li>-->
+
+                <!-- Logout option -->
+                <li><a href="/login">
+                    <span class="nav-item">Logout</span>
+                </a></li>
+            </ul>
         </div>
-        <ul>
-          <li><a href="#">
-            <i class="fas fa-user"></i>
-            <span class="nav-item">Dashboard</span>
-          </a>
-          </li>
-          <li><a href="#">
-            <i class="fas fa-chart-bar"></i>
-            <span class="nav-item">Analytics</span>
-          </a>
-          </li>
-          <li><a href="#">
-            <i class="fas fa-tasks"></i>
-            <span class="nav-item">Jobs Board</span>
-          </a>
-          </li>
-          <li><a href="#">
-            <i class="fab fa-dochub"></i>
-            <span class="nav-item">Documnents</span>
-          </a>
-          </li>
-          <li><a href="#">
-            <i class="fas fa-cog"></i>
-            <span class="nav-item">Setting</span>
-          </a>
-          </li>
-          <li><a href="#">
-            <i class="fas fa-question-circle"></i>
-            <span class="nav-item">Help</span>
-          </a>
-          </li>
-          <li><a href="#" class="logout">
-            <i class="fas fa-sign-out-alt"></i>
-            <span class="nav-item">Logout</span>
-          </a>
-          </li>
-        </ul>
-      </div>
     </nav>
 
-        <section class="main">
-      <div class="main-top">
-        <p>Explore the universe!</p>
-      </div>
-
-      <button id="addTicketButton" style="margin-bottom: 20px;">Add Ticket</button>
-
-    <div id="ticketModal" class="modal" style="display:none;">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <form id="ticketForm" action="/user/dashboard/add-ticket" method="post">
-                <label for="roomNumber">Room Number:</label>
-                <input type="text" id="roomNumber" name="roomNumber" required>
-
-                <label for="residentName">Resident Name:</label>
-                <input type="text" id="residentName" name="residentName" required>
-
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
-
-                <label for="urgency">Urgency:</label>
-                <select id="urgency" name="urgency">
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                </select>
-
-                <button type="submit" style="margin-top: 10px;">Submit Ticket</button>
-            </form>
+    <!-- Main content section -->
+    <section class="main">
+        <!-- Top part of the main content, usually for headers or titles -->
+        <div class="main-top">
+            <p>Seniors Empowered in Technology - Ticketing System</p>
         </div>
-    </div>
 
+        <!-- Button to add new tickets -->
+        <button id="addTicketButton" style="display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">Add Ticket</button>
 
-
-
-      <div class="main-body">
-        <h1>Recent Jobs</h1>
-
-      <div class="search_bar">
-        <input type="search" placeholder="Search job here...">
-        <select name="" id="">
-          <option>Category</option>
-          <option>Web Design</option>
-          <option>App Design</option>
-          <option>App Development</option>
-        </select>
-        <select class="filter">
-          <option>Filter</option>
-        </select>
-      </div>
-
-      <div class="tags_bar">
-        <div class="tag">
-          <i class="fas fa-times"></i>
-          <span>Programming</span>
+        <!-- Modal for adding tickets -->
+        <div id="ticketModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <!-- Form to submit a new ticket -->
+                <form id="ticketForm" action="/user/dashboard/add-ticket" method="post">
+                    <label for="residentName">Resident Name:</label>
+                    <input type="text" id="residentName" name="residentName" required>
+                    <label for="roomNumber">Room Number:</label>
+                    <input type="text" id="roomNumber" name="roomNumber" required>
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" required></textarea>
+                    <label for="urgency">Urgency:</label>
+                    <select id="urgency" name="urgency">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    <button id="ticket-submit">Submit Ticket</button>
+                </form>
+            </div>
         </div>
-        <div class="tag">
-          <i class="fas fa-times"></i>
-          <span>Design</span>
+
+        <!-- Main body where tickets are displayed -->
+        <div class="main-body">
+            <h1>All Tickets</h1>
+            <div>
+                <!-- Dynamic rendering of tickets based on server data -->
+                <div th:if="${tickets}">
+                    <div th:each="ticket : ${tickets}" class="ticket_card" th:classappend="${'urgency-' + ticket.urgency}">
+                        <div class="job_details">
+                            <div class="text">
+                                <h2 th:text="${ticket.residentName}">Resident Name</h2>
+                                <span th:text="${'Room ' + ticket.roomNumber + ' - ' + ticket.description}">Room Number - Description</span>
+                            </div>
+                        </div>
+                        <div class="job_urgency">
+                            <span th:text="${ticket.urgency != null ? ticket.urgency : 'Not specified'}">Urgency Level</span>
+                        </div>
+                        <!-- Form to delete a ticket -->
+                        <form th:action="@{/user/dashboard/delete-ticket}" method="post" class="delete_form">
+                            <input type="hidden" th:value="${ticket.ticketID}" name="ticketId" />
+                            <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this ticket?');">Delete Ticket</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="tag">
-          <i class="fas fa-times"></i>
-          <span>PHP</span>
-        </div>
-        <div class="tag">
-          <i class="fas fa-times"></i>
-          <span>JavaScript</span>
-        </div>
-      </div>
-
-      <div class="row">
-        <p>There are more than <span>400</span> Jobs</p>
-        <a href="#">See all</a>
-      </div>
-
-      <div>
-          <div class="job_card">
-              <div class="job_details">
-                  <!--          <div class="img">-->
-                  <!--            <i class="fab fa-google-drive"></i>-->
-                  <!--          </div>-->
-                  <div class="text">
-                      <h2>UX Designer</h2>
-                      <span>Google Drive - Junior Post</span>
-                  </div>
-              </div>
-              <div class="job_salary">
-                  <h4>$6.7 - $12.5k /yr</h4>
-                  <span>1 days ago</span>
-              </div>
-          </div>
-
-<!--          <div th:if="${tickets}">-->
-<!--              <ul>-->
-<!--                  <li th:each="ticket : ${tickets}">-->
-<!--                      <span th:text="${ticket.residentName}">Resident Name</span>,-->
-<!--                      <span th:text="${ticket.roomNumber}">Room Number</span>,-->
-<!--                      <span th:text="${ticket.description}">Description</span>,-->
-<!--&lt;!&ndash;                      <span th:text="${ticket.urgency}">Urgency</span>&ndash;&gt;-->
-<!--                  </li>-->
-<!--              </ul>-->
-<!--          </div>-->
-
-          <div th="each='ticket : ${tickets}'" class="job_card">
-              <div class="job_details">
-                  <div class="text">
-                      <h2 th:text="${ticket.residentName}">Resident Name</h2>
-                      <span th:text="${'Room ' + ticket.roomNumber + ' - ' + ticket.description}">Room Number - Description</span>
-                  </div>
-              </div>
-              <div class="job_salary">
-                  <!--                  <h4 th:text="${ticket.urgency}">Urgency Level</h4>-->
-                  <!--                  <span th:text="${#dates.format(ticket.timestamp, 'dd MMMM yyyy')}">Date</span>-->
-                  <h4>$6.7 - $12.5k /yr</h4>
-                  <span>1 days ago</span>
-              </div>
-          </div>
-          <div th:if="${tickets == null or tickets.isEmpty()}">
-              <p>No tickets found.</p>
-          </div>
-      </div>
-
-    </div>
     </section>
+</div>
 
-  </div>
-
+<!-- JavaScript for interactive elements like modal -->
 <script>
-        document.getElementById('addTicketButton').addEventListener('click', function() {
+    document.getElementById('addTicketButton').addEventListener('click', function() {
         document.getElementById('ticketModal').style.display = 'block';
     });
 
-        document.getElementsByClassName('close')[0].addEventListener('click', function() {
+    document.getElementsByClassName('close')[0].addEventListener('click', function() {
         document.getElementById('ticketModal').style.display = 'none';
     });
 
-        document.getElementById('ticketForm').addEventListener('submit', function() {
-            document.getElementById('ticketModal').style.display = 'none'; // This will just close the modal after submission
-        })
-
+    document.getElementById('ticketForm').addEventListener('submit', function() {
+        document.getElementById('ticketModal').style.display = 'none'; // This will just close the modal after submission
+    })
 </script>
-
-
 </body>
 </html>
-
-
-
-
-<!--<span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--  <title>Job Dashboard | By Code Info</title>-->
-<!--    &lt;!&ndash; Font Awesome Cdn Link &ndash;&gt;-->
-<!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />-->
-
-<!--    <style>-->
-<!--      /*<span style="font-family: verdana, geneva, sans-serif;">!*  import google fonts *!*/-->
-<!--      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");-->
-<!--      *{-->
-<!--          margin: 0;-->
-<!--          padding: 0;-->
-<!--          outline: none;-->
-<!--          border: none;-->
-<!--          text-decoration: none;-->
-<!--          list-style: none;-->
-<!--          box-sizing: border-box;-->
-<!--          font-family: "Poppins", sans-serif;-->
-<!--      }-->
-<!--      body{-->
-<!--          background: rgb(233, 233, 233);-->
-<!--      }-->
-<!--      .container{-->
-<!--          display: flex;-->
-<!--          width: 1200px;-->
-<!--          margin: auto;-->
-<!--      }-->
-<!--      nav{-->
-<!--          position: sticky;-->
-<!--          top: 0;-->
-<!--          left: 0;-->
-<!--          bottom: 0;-->
-<!--          width: 280px;-->
-<!--          height: 110vh;-->
-<!--          background: #fff;-->
-<!--      }-->
-<!--      .navbar{-->
-<!--          width: 80%;-->
-<!--          margin: 0 auto;-->
-<!--      }-->
-
-<!--      .logo{-->
-<!--          margin: 2rem 0 1rem 0;-->
-<!--          padding-bottom: 3rem;-->
-<!--          display: flex;-->
-<!--          align-items: center;-->
-<!--      }-->
-<!--      .logo img{-->
-<!--          width: 50px;-->
-<!--          height: 50px;-->
-<!--          border-radius: 50%;-->
-<!--      }-->
-<!--      .logo h1{-->
-<!--          margin-left: 1rem;-->
-<!--          text-transform: uppercase;-->
-<!--      }-->
-
-<!--      ul{-->
-<!--          margin: 0 auto;-->
-<!--      }-->
-<!--      li{-->
-<!--          padding-bottom: 2rem;-->
-<!--      }-->
-<!--      li a{-->
-<!--          font-size: 16px;-->
-<!--          color: rgb(85, 83, 83);-->
-<!--      }-->
-<!--      .nav-item{-->
-
-<!--      }-->
-<!--      nav i{-->
-<!--          width: 50px;-->
-<!--          font-size: 18px;-->
-<!--          text-align: center;-->
-<!--      }-->
-
-<!--      .logout{-->
-<!--          position: absolute;-->
-<!--          bottom: 20px;-->
-<!--      }-->
-
-<!--      /* Main Section */-->
-<!--      .main{-->
-<!--          width: 100%;-->
-<!--      }-->
-<!--      .main-top{-->
-<!--          width: 100%;-->
-<!--          background: #fff;-->
-<!--          padding: 10px;-->
-<!--          text-align: center;-->
-<!--          font-size: 18px;-->
-<!--          letter-spacing: 2px;-->
-<!--          text-transform: uppercase;-->
-<!--          color: rgb(43, 43, 43);-->
-<!--      }-->
-<!--      .main-body{-->
-<!--          padding: 10px 10px 10px 20px;-->
-<!--      }-->
-<!--      h1{-->
-<!--          margin: 20px 10px;-->
-<!--      }-->
-<!--      .search_bar{-->
-<!--          display: flex;-->
-<!--          padding: 10px;-->
-<!--          justify-content: space-between;-->
-<!--      }-->
-<!--      .search_bar input{-->
-<!--          width: 50%;-->
-<!--          padding: 10px;-->
-<!--          border: 1px solid rgb(190, 190, 190);-->
-<!--      }-->
-<!--      .search_bar input:focus{-->
-<!--          border: 1px solid blueviolet;-->
-<!--      }-->
-<!--      .search_bar select{-->
-<!--          border: 1px solid rgb(190, 190, 190);-->
-<!--          padding: 10px;-->
-<!--          margin-left: 2rem;-->
-<!--      }-->
-<!--      .search_bar .filter{-->
-<!--          width: 300px;-->
-<!--      }-->
-
-<!--      .tags_bar{-->
-<!--          width: 55%;-->
-<!--          display: flex;-->
-<!--          padding: 10px;-->
-<!--          justify-content: space-between;-->
-<!--      }-->
-<!--      .tag{-->
-<!--          background: #fff;-->
-<!--          padding: 10px 15px;-->
-<!--          border-radius: 20px;-->
-<!--          display: flex;-->
-<!--          align-items: center;-->
-<!--          font-size: 13px;-->
-<!--          cursor: pointer;-->
-<!--      }-->
-<!--      .tag i{-->
-<!--          margin-right: 0.7rem;-->
-<!--      }-->
-<!--      .row{-->
-<!--          display: flex;-->
-<!--          padding: 10px;-->
-<!--          margin-top: 1.3rem;-->
-<!--          justify-content: space-between;-->
-<!--      }-->
-<!--      .row p{-->
-<!--          color: rgb(54, 54, 54);-->
-<!--          font-size: 15px;-->
-<!--      }-->
-<!--      .row p span{-->
-<!--          color: blueviolet;-->
-<!--      }-->
-<!--      .job_card{-->
-<!--          width: 100%;-->
-<!--          padding: 15px;-->
-<!--          cursor: pointer;-->
-<!--          display: flex;-->
-<!--          border-radius: 10px;-->
-<!--          background: #fff;-->
-<!--          margin-bottom: 15px;-->
-<!--          justify-content: space-between;-->
-<!--          border: 2px solid rgb(190, 190, 190);-->
-<!--          box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);-->
-<!--      }-->
-<!--      .job_details{-->
-<!--          display: flex;-->
-<!--      }-->
-<!--      .job_details .img{-->
-<!--          display: flex;-->
-<!--          justify-content: center;-->
-<!--          align-items: center;-->
-<!--      }-->
-<!--      .job_details .img i{-->
-<!--          width: 70px;-->
-<!--          font-size: 3rem;-->
-<!--          margin-left: 1rem;-->
-<!--          padding: 10px;-->
-<!--          color: rgb(82, 22, 138);-->
-<!--          background: rgb(216, 205, 226);-->
-<!--      }-->
-<!--      .job_details .text{-->
-<!--          margin-left: 2.3rem;-->
-<!--      }-->
-<!--      .job_details .text span{-->
-<!--          color: rgb(116, 112, 112);-->
-<!--      }-->
-<!--      .job_salary{-->
-<!--          text-align: right;-->
-<!--          color: rgb(54, 54, 54);-->
-<!--      }-->
-<!--      .job_card:active{-->
-<!--          border: 2px solid blueviolet;-->
-<!--          transition: 0.4s;-->
-<!--      }-->
-<!--      /*</span>*/-->
-
-<!--      .modal {-->
-<!--          position: fixed;-->
-<!--          z-index: 1;-->
-<!--          left: 0;-->
-<!--          top: 0;-->
-<!--          width: 100%;-->
-<!--          height: 100%;-->
-<!--          overflow: auto;-->
-<!--          background-color: rgb(0,0,0);-->
-<!--          background-color: rgba(0,0,0,0.4);-->
-<!--      }-->
-
-<!--      .modal-content {-->
-<!--          background-color: #fefefe;-->
-<!--          margin: 5% auto; /* Vertical centering */-->
-<!--          padding: 20px;-->
-<!--          border: 1px solid #888;-->
-<!--          width: 90%; /* Responsive width */-->
-<!--          max-width: 500px; /* Max width */-->
-<!--          box-shadow: 0 4px 6px rgba(0,0,0,0.1);-->
-<!--          display: flex;-->
-<!--          flex-direction: column;-->
-<!--          align-items: center; /* Ensures everything is centered */-->
-<!--      }-->
-
-<!--      .modal-content label, .modal-content textarea, .modal-content select, .modal-content input {-->
-<!--          width: 100%; /* Ensures full width within the modal content */-->
-<!--          margin-top: 10px; /* Adds spacing between form items */-->
-<!--      }-->
-
-<!--      textarea#description {-->
-<!--          height: 100px; /* Fixed height */-->
-<!--          resize: none; /* Disable resizing */-->
-<!--      }-->
-
-<!--      .close {-->
-<!--          color: #aaaaaa;-->
-<!--          float: right;-->
-<!--          font-size: 28px;-->
-<!--          font-weight: bold;-->
-<!--      }-->
-
-<!--      .close:hover,-->
-<!--      .close:focus {-->
-<!--          color: #000;-->
-<!--          text-decoration: none;-->
-<!--          cursor: pointer;-->
-<!--      }-->
-
-<!--      /* Fixed height for the description textarea */-->
-<!--      textarea#description {-->
-<!--          height: 100px; /* Fixed height for the description field */-->
-<!--          resize: none; /* Prevent resizing the textarea */-->
-<!--      }-->
-<!--    </style>-->
-
-<!--</head>-->
-<!--<body>-->
-<!--  <div class="container">-->
-<!--    <nav>-->
-<!--      <div class="navbar">-->
-<!--        <div class="logo">-->
-<!--          <img src="/pic/logo.jpg" alt="">-->
-<!--          <h1>jobs</h1>-->
-<!--        </div>-->
-<!--        <ul>-->
-<!--          <li><a href="#">-->
-<!--            <i class="fas fa-user"></i>-->
-<!--            <span class="nav-item">Dashboard</span>-->
-<!--          </a>-->
-<!--          </li>-->
-<!--          <li><a href="#">-->
-<!--            <i class="fas fa-chart-bar"></i>-->
-<!--            <span class="nav-item">Analytics</span>-->
-<!--          </a>-->
-<!--          </li>-->
-<!--          <li><a href="#">-->
-<!--            <i class="fas fa-tasks"></i>-->
-<!--            <span class="nav-item">Jobs Board</span>-->
-<!--          </a>-->
-<!--          </li>-->
-<!--          <li><a href="#">-->
-<!--            <i class="fab fa-dochub"></i>-->
-<!--            <span class="nav-item">Documnents</span>-->
-<!--          </a>-->
-<!--          </li>-->
-<!--          <li><a href="#">-->
-<!--            <i class="fas fa-cog"></i>-->
-<!--            <span class="nav-item">Setting</span>-->
-<!--          </a>-->
-<!--          </li>-->
-<!--          <li><a href="#">-->
-<!--            <i class="fas fa-question-circle"></i>-->
-<!--            <span class="nav-item">Help</span>-->
-<!--          </a>-->
-<!--          </li>-->
-<!--          <li><a href="#" class="logout">-->
-<!--            <i class="fas fa-sign-out-alt"></i>-->
-<!--            <span class="nav-item">Logout</span>-->
-<!--          </a>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </div>-->
-<!--    </nav>-->
-
-<!--        <section class="main">-->
-<!--      <div class="main-top">-->
-<!--        <p>Explore the universe!</p>-->
-<!--      </div>-->
-
-<!--      <button id="addTicketButton" style="margin-bottom: 20px;">Add Ticket</button>-->
-
-<!--    <div id="ticketModal" class="modal" style="display:none;">-->
-<!--        <div class="modal-content">-->
-<!--            <span class="close">&times;</span>-->
-<!--            <form id="ticketForm" action="/dashboard/add-ticket" method="post">-->
-<!--                <label for="roomNumber">Room Number:</label>-->
-<!--                <input type="text" id="roomNumber" name="roomNumber" required>-->
-
-<!--                <label for="residentName">Resident Name:</label>-->
-<!--                <input type="text" id="residentName" name="residentName" required>-->
-
-<!--                <label for="description">Description:</label>-->
-<!--                <textarea id="description" name="description" required></textarea>-->
-
-<!--                <label for="urgency">Urgency:</label>-->
-<!--                <select id="urgency" name="urgency">-->
-<!--                    <option value="low">Low</option>-->
-<!--                    <option value="medium">Medium</option>-->
-<!--                    <option value="high">High</option>-->
-<!--                </select>-->
-
-<!--                <button type="submit" style="margin-top: 10px;">Submit Ticket</button>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-
-
-
-
-<!--      <div class="main-body">-->
-<!--        <h1>Recent Jobs</h1>-->
-
-<!--      <div class="search_bar">-->
-<!--        <input type="search" placeholder="Search job here...">-->
-<!--        <select name="" id="">-->
-<!--          <option>Category</option>-->
-<!--          <option>Web Design</option>-->
-<!--          <option>App Design</option>-->
-<!--          <option>App Development</option>-->
-<!--        </select>-->
-<!--        <select class="filter">-->
-<!--          <option>Filter</option>-->
-<!--        </select>-->
-<!--      </div>-->
-
-<!--      <div class="tags_bar">-->
-<!--        <div class="tag">-->
-<!--          <i class="fas fa-times"></i>-->
-<!--          <span>Programming</span>-->
-<!--        </div>-->
-<!--        <div class="tag">-->
-<!--          <i class="fas fa-times"></i>-->
-<!--          <span>Design</span>-->
-<!--        </div>-->
-<!--        <div class="tag">-->
-<!--          <i class="fas fa-times"></i>-->
-<!--          <span>PHP</span>-->
-<!--        </div>-->
-<!--        <div class="tag">-->
-<!--          <i class="fas fa-times"></i>-->
-<!--          <span>JavaScript</span>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="row">-->
-<!--        <p>There are more than <span>400</span> Jobs</p>-->
-<!--        <a href="#">See all</a>-->
-<!--      </div>-->
-
-<!--      <div class="job_card">-->
-<!--        <div class="job_details">-->
-<!--&lt;!&ndash;          <div class="img">&ndash;&gt;-->
-<!--            &lt;!&ndash;            <i class="fab fa-google-drive"></i>&ndash;&gt;-->
-<!--            &lt;!&ndash;          </div>&ndash;&gt;-->
-<!--          <div class="text">-->
-<!--            <h2>UX Designer</h2>-->
-<!--            <span>Google Drive - Junior Post</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="job_salary">-->
-<!--          <h4>$6.7 - $12.5k /yr</h4>-->
-<!--          <span>1 days ago</span>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    </section>-->
-
-<!--  </div>-->
-
-<!--<script>-->
-<!--        document.getElementById('addTicketButton').addEventListener('click', function() {-->
-<!--            document.getElementById('ticketModal').style.display = 'block';-->
-<!--        });-->
-
-<!--        document.getElementsByClassName('close')[0].addEventListener('click', function() {-->
-<!--            document.getElementById('ticketModal').style.display = 'none';-->
-<!--        });-->
-
-<!--        //     document.getElementById('ticketForm').addEventListener('submit', function(event) {-->
-<!--        //     event.preventDefault();-->
-<!--        //     document.getElementById('ticketModal').style.display = 'none';-->
-<!--        // });-->
-
-<!--</script>-->
-
-<!--</body>-->
-<!--</html>-->
-<!--</span>-->

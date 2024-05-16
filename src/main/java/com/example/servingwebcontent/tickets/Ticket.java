@@ -1,18 +1,25 @@
 package com.example.servingwebcontent.tickets;
 
+// Importing necessary classes from other packages.
 import com.example.servingwebcontent.database.DatabaseOperations;
 import com.google.cloud.firestore.Firestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
+// Definition of the Ticket class which models the ticket object within the system.
 public class Ticket {
+    // Declaration of private instance variables to encapsulate ticket information.
     private String residentName;
     private String roomNumber;
     private String urgency;
     private String description;
-    private Firestore db;
-    public static int ticketCount;
+    private String ticketID; // Unique identifier for each ticket.
+    private Firestore db; // Firestore database instance for DB operations.
+    public static int ticketCount; // Static variable to keep track of tickets.
+
+    // Constructor for creating a new ticket with provided details and saving to Firestore.
     public Ticket(Firestore db, String residentName,  String roomNumber, String description, String urgency){
         this.db = db;
         this.roomNumber = roomNumber;
@@ -20,31 +27,32 @@ public class Ticket {
         this.description = description;
         this.urgency = urgency;
 
+        // Using a HashMap to hold ticket data for database operations.
         Map<String, Object> ticketData = new HashMap<>();
         ticketData.put("residentName", residentName);
         ticketData.put("roomNumber", roomNumber);
         ticketData.put("description", description);
         ticketData.put("urgency", urgency);
 
-        ticketCount = DatabaseOperations.getDocumentNamesFromFirestore(db, "tickets").size() + 1;
+        // Generating a unique ID for each ticket using UUID.
+        ticketID = UUID.randomUUID().toString();
+        ticketData.put("ticketID", ticketID);
 
-        int numZeros = 5 - String.valueOf(ticketCount).length();
-        String docID = "ticket" + "0".repeat(numZeros) + ticketCount;
-        DatabaseOperations.writeDataToFirestore(db, "tickets", docID, ticketData);
+        // Writing the ticket data to the Firestore database.
+        DatabaseOperations.writeDataToFirestore(db, "tickets", ticketID, ticketData);
     }
 
+    // Alternate constructor used for creating ticket objects from Firestore data.
     public Ticket(Firestore db, Map<String, Object> ticketMap) {
         this.db=db;
-
-        // Assigning instance variables from the userMap, ensuring to cast the objects to their appropriate types.
         this.residentName = (String) ticketMap.get("residentName");
         this.roomNumber = (String) ticketMap.get("roomNumber");
         this.urgency = (String) ticketMap.get("urgency");
         this.description = (String) ticketMap.get("description");
-
-
+        this.ticketID = (String) ticketMap.get("ticketID");
     }
 
+    // Getter methods for retrieving private data fields.
     public String getResidentName() {
         return residentName;
     }
@@ -53,20 +61,22 @@ public class Ticket {
         return roomNumber;
     }
 
-    public String geturgency(){
+    public String getUrgency(){
         return urgency;
     }
 
     public String getDescription(){
         return description;
     }
+    public String getTicketID(){
+        return ticketID;
+    }
 
+    // Override of the toString method to provide a formatted string of ticket details.
     public String toString(){
-        String output = "";
-        output += "Description: " + this.description + "\n";
-        output += "Resident Name: " + this.residentName + "\n";
-        output += "Room Number: " + this.roomNumber + "\n";
-        output += "Urgency: " + this.urgency;
-        return output;
+        return "Description: " + description + "\n" +
+                "Resident Name: " + residentName + "\n" +
+                "Room Number: " + roomNumber + "\n" +
+                "Urgency: " + urgency;
     }
 }
