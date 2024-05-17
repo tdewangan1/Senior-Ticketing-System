@@ -8,28 +8,43 @@ import com.google.cloud.firestore.Firestore;
 import java.util.HashMap;
 import java.util.Map;
 
+// User parent class that models the user object within the system.
+// Contributors: Shubham Kale and Tanmay Dewangan
 public class User {
+    // Declaration of private instance variables to encapsulate user information.
     private String username;
     private String hashedPassword;
     private String userType;
     Firestore db;
     public static int userCount;
 
-    public User(Firestore db, String username, String password) {
+    /*
+     * Constructor for creating a new user with provided details and saving to Firestore.
+     * @param db: Firestore database instance for DB operations.
+     * @param username: Username of the user.
+     * @param password: Password of the user.
+     * @param userData: Map containing additional user data such as volunteer hours or retirement home.
+     * @param userType: Type of user (staff or volunteer).
+     * Contributors: Shubham Kale and Tanmay Dewangan
+     */
+    public User(Firestore db, String username, String password, Map<String, Object> userData, String userType){
+        // Assigning instance variables from the parameters.
         this.username = username;
         this.hashedPassword = AuthUtils.hashPassword(password);
-//        this.userType = userType;
+        this.userType = userType;
         this.db=db;
 
-        Map<String, Object> userData = new HashMap<>();
+        // Adding the username, hashed password, and user type to the userData map.
         userData.put("username", username);
         userData.put("hashedPassword", hashedPassword);
         userData.put("userType", userType);
 
-
+        // Generating a unique ID for each user using the userCount static variable.
         userCount = DatabaseOperations.getDocumentNamesFromFirestore(db, "users").size() + 1;
         int numZeros = 3 - String.valueOf(userCount).length();
         String docID = "user" + "0".repeat(numZeros) + userCount;
+
+        // Writing the user data to the Firestore database.
         DatabaseOperations.writeDataToFirestore(db, "users", docID, userData);
     }
 
@@ -44,11 +59,7 @@ public class User {
 //        this.userType = (String) userMap.get("userType");
     }
 
-    public void changeUsername(Firestore db, String newUserName){
-        DatabaseOperations.writeDataToFirestore(db, "users", username, "username", newUserName);
-        this.username = newUserName;
-    }
-
+    // Getter methods to access the private instance variables.
     public String getUsername() {
         return username;
     }

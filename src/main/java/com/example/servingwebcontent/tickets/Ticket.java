@@ -19,7 +19,9 @@ public class Ticket {
     private Firestore db; // Firestore database instance for DB operations.
     public static int ticketCount; // Static variable to keep track of tickets.
 
+
     // Constructor for creating a new ticket with provided details and saving to Firestore.
+    // Contributors: Tanmay Dewangan
     public Ticket(Firestore db, String residentName,  String roomNumber, String description, String urgency){
         this.db = db;
         this.roomNumber = roomNumber;
@@ -42,7 +44,12 @@ public class Ticket {
         DatabaseOperations.writeDataToFirestore(db, "tickets", ticketID, ticketData);
     }
 
-    // Alternate constructor used for creating ticket objects from Firestore data.
+    /*
+     * Alternate constructor used for creating ticket objects from Firestore data.
+     * This does NOT write the ticket to the database.
+     * Used when retrieving tickets from the database and saving it in an ArrayList of Ticket objects in the TicketService class.
+     * Contributors: Shubham Kale
+     */
     public Ticket(Firestore db, Map<String, Object> ticketMap) {
         this.db=db;
         this.residentName = (String) ticketMap.get("residentName");
@@ -70,13 +77,5 @@ public class Ticket {
     }
     public String getTicketID(){
         return ticketID;
-    }
-
-    // Override of the toString method to provide a formatted string of ticket details.
-    public String toString(){
-        return "Description: " + description + "\n" +
-                "Resident Name: " + residentName + "\n" +
-                "Room Number: " + roomNumber + "\n" +
-                "Urgency: " + urgency;
     }
 }

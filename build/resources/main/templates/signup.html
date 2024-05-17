@@ -1,26 +1,33 @@
-<!-- login.html -->
+<!-- signup.html -->
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Senior Ticketing System Signup</title>
-    <!--    <link rel="stylesheet" href="login.css">-->
+    <!-- Link to FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <style>
+        /* Import Google Fonts */
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-        *{
+
+        /* Reset and set default styles */
+        * {
             margin: 0;
             padding: 0;
             outline: none;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        body{
+
+        /* Full height and width for the body, with a gradient background */
+        body {
             height: 100vh;
             width: 100%;
             background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
         }
-        .show-btn{
+
+        /* Styles for the button to show the form */
+        .show-btn {
             background: #fff;
             padding: 10px 20px;
             font-size: 20px;
@@ -29,81 +36,113 @@
             cursor: pointer;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
         }
-        .show-btn, .container{
+
+        /* Centering elements */
+        .show-btn, .container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
 
-        input[type="checkbox"]{
+        /* Hide checkbox */
+        input[type="checkbox"] {
             display: none;
         }
-        .container{
-            /*display: none;*/
+
+        /* Container for the form */
+        .container {
             background: #fff;
             width: 410px;
             padding: 30px;
             box-shadow: 0 0 8px rgba(0,0,0,0.1);
         }
-        #show:checked ~ .container{
+
+        /* Display the container when checkbox is checked */
+        #show:checked ~ .container {
             display: block;
         }
-        .container .close-btn{
+
+        /* Close button styles */
+        .container .close-btn {
             position: absolute;
             right: 20px;
             top: 15px;
             font-size: 18px;
             cursor: pointer;
         }
-        .container .close-btn:hover{
+
+        /* Hover effect for close button */
+        .container .close-btn:hover {
             color: #3498db;
         }
-        .container .text{
+
+        /* Text style for the form title */
+        .container .text {
             font-size: 35px;
             font-weight: 600;
             text-align: center;
         }
-        .container form{
+
+        /* Margin adjustments for the form */
+        .container form {
             margin-top: -20px;
         }
-        .container form .data{
+
+        /* Form data input styles */
+        .container form .data {
             height: 45px;
             width: 100%;
             margin: 40px 0;
         }
-        form .data label{
+
+        /* Label styles */
+        form .data label {
             font-size: 18px;
         }
-        form .data input{
+
+        /* Input field styles */
+        form .data input {
             height: 100%;
             width: 100%;
             padding-left: 10px;
             font-size: 17px;
             border: 1px solid silver;
         }
-        form .data input:focus{
+
+        /* Focus effect on input fields */
+        form .data input:focus {
             border-color: #3498db;
             border-bottom-width: 2px;
         }
-        form .forgot-pass{
+
+        /* Forgot password link styles */
+        form .forgot-pass {
             margin-top: -8px;
         }
-        form .forgot-pass a{
+
+        /* Link styles for forgot password */
+        form .forgot-pass a {
             color: #3498db;
             text-decoration: none;
         }
-        form .forgot-pass a:hover{
+
+        /* Hover effect for forgot password link */
+        form .forgot-pass a:hover {
             text-decoration: underline;
         }
-        form .btn{
+
+        /* Button container styles */
+        form .btn {
             margin: 30px 0;
             height: 45px;
             width: 100%;
             position: relative;
             overflow: hidden;
         }
-        form .btn .inner{
+
+        /* Inner gradient animation for button */
+        form .btn .inner {
             height: 100%;
             width: 300%;
             position: absolute;
@@ -112,10 +151,14 @@
             background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
             transition: all 0.4s;
         }
-        form .btn:hover .inner{
+
+        /* Button hover effect */
+        form .btn:hover .inner {
             left: 0;
         }
-        form .btn button{
+
+        /* Button text styles */
+        form .btn button {
             height: 100%;
             width: 100%;
             background: none;
@@ -127,14 +170,20 @@
             letter-spacing: 1px;
             cursor: pointer;
         }
-        form .signup-link{
+
+        /* Signup link styles */
+        form .signup-link {
             text-align: center;
         }
-        form .signup-link a{
+
+        /* Link styles for signup link */
+        form .signup-link a {
             color: #3498db;
             text-decoration: none;
         }
-        form .signup-link a:hover{
+
+        /* Hover effect for signup link */
+        form .signup-link a:hover {
             text-decoration: underline;
         }
     </style>
@@ -142,13 +191,14 @@
 <body>
 <div class="center">
     <input type="checkbox" id="show">
-<!--    <label for="show" class="show-btn">View Form</label>-->
+    <!-- Form container -->
     <div class="container">
-<!--        <label for="show" class="close-btn fas fa-times" title="close"></label>-->
         <div class="text">
             Signup Form
         </div>
+        <!-- Display signup error message if any -->
         <p th:if="${signupError}" th:text="${signupError}" style="color: red; text-align: center; margin-top: 5px"></p>
+        <!-- Signup form -->
         <form action="/signup" method="post">
             <div class="data">
                 <label>Username</label>
@@ -162,6 +212,18 @@
                 <label>Confirm Password</label>
                 <input type="password" name="confirm_password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Please enter the same password as above">
             </div>
+            <div class="data">
+                <label>User Type</label>
+                <select id="user_type" name="user_type" required onchange="checkUserType()">
+                    <option value="">Select...</option>
+                    <option value="Staff">Staff</option>
+                    <option value="Volunteer">Volunteer</option>
+                </select>
+            </div>
+            <div class="data" id="retirement_home_field" style="display: none;">
+                <label>Retirement Home</label>
+                <input type="text" name="retirement_home">
+            </div>
             <div class="btn">
                 <div class="inner"></div>
                 <button type="submit">Sign up</button>
@@ -172,5 +234,21 @@
         </form>
     </div>
 </div>
+<script>
+    // JavaScript function to show/hide the retirement home field based on user type
+    function checkUserType() {
+        var userType = document.getElementById('user_type').value;
+        var retirementHomeField = document.getElementById('retirement_home_field');
+        var retirementHomeInput = retirementHomeField.getElementsByTagName('input')[0];
+
+        if (userType === 'Staff') {
+            retirementHomeField.style.display = 'block';
+            retirementHomeInput.required = true;
+        } else {
+            retirementHomeField.style.display = 'none';
+            retirementHomeInput.required = false;
+        }
+    }
+</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.example.servingwebcontent;
+package com.example.servingwebcontent.config;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
@@ -20,6 +20,7 @@ import java.io.InputStream;
  *
  * The @Configuration annotation indicates that the class has @Bean definition methods,
  * allowing Spring IoC container to process and generate beans to be used in the application.
+ * Contributors: Shubham Kale
  */
 @Configuration
 public class FirebaseConfig {

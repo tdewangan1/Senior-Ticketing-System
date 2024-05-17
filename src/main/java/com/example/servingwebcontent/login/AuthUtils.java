@@ -13,6 +13,7 @@ import java.util.concurrent.ExecutionException;
 public class AuthUtils {
 
     // Hashes a password using SHA-256 and returns the hexadecimal string.
+    // Contributors: Tanmay Dewangan
     public static String hashPassword(String password) {
         try {
             // Create a MessageDigest instance for SHA-256.
@@ -27,6 +28,8 @@ public class AuthUtils {
                 if(hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
             }
+
+            // Return the hex string representation of the hashed password.
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
             // Handle potential exception by throwing a runtime exception.
@@ -35,6 +38,7 @@ public class AuthUtils {
     }
 
     // Authenticates a user by username and password. Returns true if the user exists and the password matches.
+    // Contributors: Tanmay Dewangan
     public static boolean authenticate(Firestore db, String username, String password) throws ExecutionException, InterruptedException {
         // Retrieve all document IDs in the 'users' collection.
         ArrayList<String> userDocIDs = (ArrayList<String>) DatabaseOperations.getDocumentNamesFromFirestore(db, "users");

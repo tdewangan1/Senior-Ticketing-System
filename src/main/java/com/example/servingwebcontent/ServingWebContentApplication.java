@@ -11,6 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * The @SpringBootApplication annotation marks this class as a Spring Boot application.
  * It enables features like component scanning, autoconfiguration, and property support
  * by encapsulating @Configuration, @EnableAutoConfiguration, and @ComponentScan annotations.
+ *
+ * Obtained from Spring default template
  */
 @SpringBootApplication
 public class ServingWebContentApplication {
