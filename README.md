@@ -1,14 +1,64 @@
 This ticketing system application is utilized for Seniors Empowered in Technology (SET), a community service organization aimed toward helping seniors with their technological struggles
+
 You have the ability to create different tickets for different residents living at a retirement home.
 
-Run this program using this command below in the terminal with the active directory being "Senior-Ticketing-System":
+## Features
+- User authentication and authorization
+- CRUD operations for support tickets
+- Role-based access control
+- User-friendly interface for managing tickets
+- Firebase integration for database operations
 
-./gradlew bootRun
+## Technologies Used
+- Java 17
+- Spring Boot 3
+- Firebase Firestore
+- Thymeleaf
+- HTML/CSS
+- JavaScript
 
-Go to localhost:8080 to access this application in your browser once it has been run.
+## Prerequisites
+- Java 17 or higher
+- Gradle
 
-The dependency needed for this application is Gradle, a API used for connecting us to our firebase database. 
 
-Download Gradle using the link below:
+## Installation
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/senior-ticketing-system.git
+    cd senior-ticketing-system
+    ```
 
-https://gradle.org/install/
+2. Install dependencies:
+    ```sh
+    ./gradlew build
+    ```
+## Dependencies
+Include the following dependencies in your `build.gradle` file:
+
+```groovy
+dependencies {
+    implementation 'com.google.firebase:firebase-admin:9.2.0'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+```
+
+## Usage
+1. Run the application:
+    ```sh
+    ./gradlew bootRun
+    ```
+
+2. Open a web browser and navigate to `http://localhost:8080`.
+
+## Endpoints
+- `/login`: User login page
+- `/signup`: User registration page
+- `/user/dashboard`: User dashboard
+- `/user/dashboard/add-ticket`: Add a new ticket (GET and POST)
+- `/user/dashboard/delete-ticket`: Delete a ticket (POST)
+
+
