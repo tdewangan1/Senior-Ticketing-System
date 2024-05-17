@@ -53,6 +53,7 @@ dependencies {
     ```
 
 2. Open a web browser and navigate to `http://localhost:8080`.
+3. You can create a custom username and password on the signup page or you can use the default login with username: "admin" and password: "Password123"
 
 ## Endpoints
 - `/login`: User login page
