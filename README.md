@@ -62,4 +62,38 @@ dependencies {
 - `/user/dashboard/add-ticket`: Add a new ticket (GET and POST)
 - `/user/dashboard/delete-ticket`: Delete a ticket (POST)
 
+## Project Structure
+
+src
+ ├── main
+ │   ├── java
+ │   │   └── com
+ │   │       └── example
+ │   │           └── servingwebcontent
+ │   │               ├── config
+ │   │               │   └── FirebaseConfig.java
+ │   │               ├── controllers
+ │   │               │   ├── DashboardController.java
+ │   │               │   └── UserController.java
+ │   │               ├── database
+ │   │               │   └── DatabaseOperations.java
+ │   │               ├── login
+ │   │               │   └── AuthUtils.java
+ │   │               ├── service
+ │   │               │   └── TicketService.java
+ │   │               ├── tickets
+ │   │               │   └── Ticket.java
+ │   │               ├── users
+ │   │               │   └── User.java
+ │   │               └── ServingWebContentApplication.java
+ │   └── resources
+ │       ├── static
+ │       │   └── css
+ │       │       └── styles.css
+ │       ├── templates
+ │       │   ├── dashboard.html
+ │       │   ├── login.html
+ │       │   └── signup.html
+ │       ├── serviceAccountKey.json
+ │       └── application.properties   
 
