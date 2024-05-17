@@ -99,5 +99,9 @@ src
  │       │   └── signup.html
  │       ├── serviceAccountKey.json
  │       └── application.properties   
+```
 
-
+## Rubric Requirements
+```plaintext
+# Delivery
+Our goal was to create a ticketing system which could be accessed by Staff members and volunteers. This was definitely accomplished in our project since the application allowed users to sign up as either a volunteer and members and allowed users to add/delete tickets depending on their user type. 
