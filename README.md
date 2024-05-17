@@ -64,6 +64,7 @@ dependencies {
 
 ## Project Structure
 
+```plaintext
 src
  ├── main
  │   ├── java
