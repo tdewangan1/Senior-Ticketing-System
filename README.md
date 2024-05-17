@@ -85,6 +85,8 @@ src
  │   │               ├── tickets
  │   │               │   └── Ticket.java
  │   │               ├── users
+ │   │               │   ├── Staff.java
+ │   │               │   ├── Volunteer.java
  │   │               │   └── User.java
  │   │               └── ServingWebContentApplication.java
  │   └── resources
